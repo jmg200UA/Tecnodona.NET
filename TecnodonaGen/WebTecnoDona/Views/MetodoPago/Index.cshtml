@@ -1,0 +1,60 @@
+﻿@model IEnumerable<WebTecnoDona.Models.MetodoPagoViewModel>
+
+@{
+    ViewBag.Title = "Métodos de pago";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Métodos de pago</h2>
+
+<!--<p>
+    @Html.ActionLink("Create New", "Create")
+</p>-->
+<!-- <table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+        </tr>
+    }
+
+</table> -->
+
+
+<!-- Ejemplo de dropdown  -->
+        <br />
+        <div class="container-fluid" style="margin-bottom:100px">
+            <div class="row" style="background-color:gray">
+                <div class="col-sm-12" style="background-color: gray">
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Métodos de pago
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    @foreach (var item in Model)
+                    {
+                        <li>&nbsp &nbsp &nbsp<b>@Html.DisplayFor(modelItem => item.Nombre)</b> &nbsp @Html.DisplayFor(modelItem => item.Id)</li>
+
+                    }
+                </ul>
+            </div>
+        </div>

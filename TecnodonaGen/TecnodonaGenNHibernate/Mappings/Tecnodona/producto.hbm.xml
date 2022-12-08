@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TecnodonaGenNHibernate"
+		                   namespace="TecnodonaGenNHibernate.EN.Tecnodona">
+		    
+		    
+			
+				<class name="ProductoEN" table="Producto"> 
+				  	
+						<id name="NumeroReferencia" column="numeroReferenciaProducto" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="ValoracionMedia" type="integer"> 
+						<column name="valoracionMedia"  not-null="true"/>
+					</property>
+					<property name="Stock" type="integer"> 
+						<column name="stock"  not-null="true"/>
+					</property>
+					<property name="Precio" type="double"> 
+						<column name="precio"  not-null="true"/>
+					</property>
+			
+			
+		  			
+						<bag name="Proveedor" table="[proveedor_producto]" inverse="true" >
+							<key>
+								
+									<column name="FK_numeroReferenciaProducto_idProducto"/> 
+							</key>
+      						<many-to-many class="TecnodonaGenNHibernate.EN.Tecnodona.ProveedorEN">
+									<column name="FK_id_idProveedor"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Linea" >
+							<key>
+							
+								
+								<column name="FK_numeroReferenciaProducto_idProducto"/>
+					      	</key>
+							<one-to-many class="TecnodonaGenNHibernate.EN.Tecnodona.LineaPedidoEN"/>
+					    </bag>
+					
+			
+			
+		  			
+						<bag name="Articulo" >
+							<key>
+							
+								
+								<column name="FK_numeroReferenciaProducto_idProducto"/>
+					      	</key>
+							<one-to-many class="TecnodonaGenNHibernate.EN.Tecnodona.ArticuloEN"/>
+					    </bag>
+					
+			
+			
+			
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="ProductoENReadAllHQL">from ProductoEN</query>
+		</hibernate-mapping>
+	

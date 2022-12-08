@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TecnodonaGenNHibernate"
+		                   namespace="TecnodonaGenNHibernate.EN.Tecnodona">
+		    
+		    
+			
+				<class name="LineaPedidoEN" table="LineaPedido"> 
+				  	
+						<id name="Id" column="id" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Cantidad" type="integer"> 
+						<column name="cantidad"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<many-to-one name="Producto" class="TecnodonaGenNHibernate.EN.Tecnodona.ProductoEN" >	
+								<column name="FK_numeroReferenciaProducto_idProducto"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Pedido" class="TecnodonaGenNHibernate.EN.Tecnodona.PedidoEN" >	
+								<column name="FK_codigo_idPedido"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="LineaPedidoENReadAllHQL">from LineaPedidoEN</query>
+		</hibernate-mapping>
+	

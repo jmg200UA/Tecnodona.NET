@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TecnodonaGenNHibernate"
+		                   namespace="TecnodonaGenNHibernate.EN.Tecnodona">
+		    
+		    
+			
+				<class name="PedidoEN" table="Pedido"> 
+						<id name="Codigo" column="codigo"/> 
+			
+					
+					<property name="Seguimiento" type="string"> 
+						<column name="seguimiento"  not-null="true"/>
+					</property>
+					<property name="NumArticulo" type="integer"> 
+						<column name="numArticulo"  not-null="true"/>
+					</property>
+					<property name="TotalPrecio" type="double"> 
+						<column name="totalPrecio"  not-null="true"/>
+					</property>
+					<property name="Estado" > 
+						<column name="estado"  not-null="true"/>
+					</property>
+					<property name="FechaInicio" type="date"> 
+						<column name="fechaInicio"  not-null="true"/>
+					</property>
+					<property name="FechaLlegada" type="date"> 
+						<column name="fechaLlegada"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		  			
+						<many-to-one name="Pago" class="TecnodonaGenNHibernate.EN.Tecnodona.MetodoPagoEN" >	
+								<column name="FK_idMetodoPago_idMetodoPago"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Cliente" class="TecnodonaGenNHibernate.EN.Tecnodona.ClienteEN" >	
+								<column name="FK_id_idCliente"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<bag name="Linea" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_codigo_idPedido"/>
+					      	</key>
+							<one-to-many class="TecnodonaGenNHibernate.EN.Tecnodona.LineaPedidoEN"/>
+					    </bag>
+					
+			
+		  			
+					
+							   <one-to-one name="Factura" class="TecnodonaGenNHibernate.EN.Tecnodona.FacturaEN" property-ref="Pedido" />							
+					 
+						
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="PedidoENReadAllHQL">from PedidoEN</query>
+		  <query name="PedidoENvalidarPedidoHQL"><![CDATA[FROM PedidoEN]]></query>
+		  <query name="PedidoENdamePedidoPorProductoHQL"><![CDATA[select ped FROM PedidoEN as ped inner join ped.Linea as lin where lin.Producto.NumeroReferencia = :p_idProducto]]></query>
+		  <query name="PedidoENdameProductosPorPedidoHQL"><![CDATA[select prod FROM ProductoEN as prod inner join prod.Linea as lin where lin.Pedido.Codigo = :p_idPedido]]></query>
+		</hibernate-mapping>
+	

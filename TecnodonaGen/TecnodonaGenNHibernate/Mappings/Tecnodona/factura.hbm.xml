@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="TecnodonaGenNHibernate"
+		                   namespace="TecnodonaGenNHibernate.EN.Tecnodona">
+		    
+		    
+			
+				<class name="FacturaEN" table="Factura"> 
+				  	
+						<id name="Id" column="idFactura" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+			
+			
+		  			
+						<bag name="Articulo" >
+							<key>
+							
+								
+								<column name="FK_idFactura_idFactura"/>
+					      	</key>
+							<one-to-many class="TecnodonaGenNHibernate.EN.Tecnodona.ArticuloEN"/>
+					    </bag>
+					
+			
+			
+		  			
+					
+							<many-to-one name="Pedido" class="TecnodonaGenNHibernate.EN.Tecnodona.PedidoEN" >
+								<column name="FK_codigo_idPedido"/> 
+        					</many-to-one>
+					 
+						
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="FacturaENReadAllHQL">from FacturaEN</query>
+		</hibernate-mapping>
+	
